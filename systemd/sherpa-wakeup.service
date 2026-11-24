@@ -1,0 +1,17 @@
+[Unit]
+Description=Sherpa-onnx wakeup word detector (你好小鸭)
+After=chatbot.service
+Requires=chatbot.service
+
+[Service]
+Type=simple
+WorkingDirectory=/root
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/root/sherpa_venv/bin/python -u /root/sherpa_realtime.py
+Restart=always
+RestartSec=3
+StandardOutput=append:/var/log.hdd/sherpa.log
+StandardError=append:/var/log.hdd/sherpa.log
+
+[Install]
+WantedBy=multi-user.target

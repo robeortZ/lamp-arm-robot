@@ -1,0 +1,15 @@
+[Unit]
+Description=Force s2idle and forbid deep suspend (DshanPi A1)
+DefaultDependencies=no
+After=local-fs.target
+Before=sysinit.target shutdown.target
+Conflicts=shutdown.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/sh -c 'if [ -w /sys/power/mem_sleep ]; then echo s2idle > /sys/power/mem_sleep; fi'
+ExecStart=/bin/sh -c 'echo "no-suspend: mem_sleep=$(cat /sys/power/mem_sleep 2>/dev/null)" | systemd-cat -t no-suspend'
+
+[Install]
+WantedBy=sysinit.target

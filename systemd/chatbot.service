@@ -1,0 +1,21 @@
+[Unit]
+Description=TuyaOpen your_chat_bot (DshanPi A1 lamp)
+After=network-online.target sound.target audio-mixer.service
+Wants=network-online.target
+# 声卡独占：同一时刻只能跑一个实例
+
+[Service]
+Type=simple
+WorkingDirectory=/root/tb_run
+# [PATCH] systemd 默认不给 HOME，tkl_kws.c 用 getenv("HOME") 展开 ~/tuyaopen_models/*.mnn
+# HOME 为空会导致 MNN 模型加载失败 -> kws module create failed -> 语音唤醒完全失效
+Environment=HOME=/root
+ExecStart=/root/TuyaOpen/apps/tuya.ai/your_chat_bot/.build/bin/your_chat_bot_1.0.1.elf
+Restart=always
+RestartSec=5
+# 日志写真实磁盘，重启不丢
+StandardOutput=append:/var/log.hdd/tb-app.log
+StandardError=append:/var/log.hdd/tb-app.log
+
+[Install]
+WantedBy=multi-user.target

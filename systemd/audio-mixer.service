@@ -1,0 +1,12 @@
+[Unit]
+Description=Apply ES8388 mixer settings (PCM 0dB) for headless audio
+After=sound.target alsa-restore.service
+Wants=sound.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/sbin/audio-mixer-init.sh
+
+[Install]
+WantedBy=multi-user.target

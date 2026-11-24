@@ -1,0 +1,15 @@
+[Unit]
+Description=Lamp robot greet mode (YuNet face detect + lamp head pan + TTS hello)
+After=network.target
+Conflicts=face-follow.service
+
+[Service]
+Environment=PYTHONUNBUFFERED=1
+Type=simple
+WorkingDirectory=/usr/local/sbin
+ExecStart=/root/armenv/bin/python /usr/local/sbin/greet_service.py
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

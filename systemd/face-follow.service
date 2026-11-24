@@ -1,0 +1,19 @@
+[Unit]
+Description=Desk lamp face following (YuNet + solvePnP)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/usr/local/sbin
+# 真实跟随：底座(ID1)左右 + 灯头俯仰(ID4)快速细调 + 小臂(ID3)慢速粗调。
+# tilt-sign=1 / elbow-sign=1 是实测结论（tick 增大 = 往下压/低头）
+# elbow-rate 0.5：人蹲下/站起这种大变化，小臂约 2 秒慢慢接管
+# pan-sign=1 未验证：若左右方向反了改成 -1
+ExecStart=/root/armenv/bin/python /usr/local/sbin/face_follow.py --armed --pan --tilt --elbow --tilt-sign 1 --elbow-sign 1 --pan-sign 1 --elbow-max 20 --span 40 --max-step 12
+Restart=always
+RestartSec=5
+StandardOutput=append:/var/log/face_follow.log
+StandardError=append:/var/log/face_follow.log
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,15 @@
+{
+  "base_pose": {
+    "shoulder_pan.pos": 1.978,
+    "shoulder_lift.pos": -77.0549,
+    "elbow_flex.pos": 14.4725,
+    "wrist_flex.pos": 51.1648,
+    "wrist_roll.pos": 19.4725,
+    "gripper.pos": 0.4725
+  },
+  "saved_at": "2026-10-14T07:21:44",
+  "source": "arm_pose_save.py",
+  "tuned_at": "2026-10-14T08:05:49",
+  "tuned_by": "arm_pose_try.py",
+  "tune_note": "elbow_flex 39.4725 -> 14.4725 (-25)：夹爪上的台灯原本灯面略朝地面，减小肘角把灯面抬到水平朝上。俯仰和 lift+elbow+wf 由 +13.58 变为 -11.42。目视三档扫描后选定。"
+}

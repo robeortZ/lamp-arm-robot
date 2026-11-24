@@ -1,0 +1,43 @@
+{
+  "1": {
+    "min_raw": 783,
+    "max_raw": 3487,
+    "min_deg": -111.2,
+    "max_deg": 126.5,
+    "span_deg": 237.7
+  },
+  "2": {
+    "min_raw": 1031,
+    "max_raw": 3174,
+    "min_deg": -89.4,
+    "max_deg": 99.0,
+    "span_deg": 188.3
+  },
+  "3": {
+    "min_raw": 1862,
+    "max_raw": 4071,
+    "min_deg": -16.3,
+    "max_deg": 177.8,
+    "span_deg": 194.2
+  },
+  "4": {
+    "start": 2042,
+    "min_raw": 961,
+    "max_raw": 3153,
+    "span": 2192,
+    "wraps": false,
+    "min_deg": -95.4,
+    "max_deg": 97.2,
+    "span_deg": 192.7
+  },
+  "5": {
+    "start": 2049,
+    "min_raw": 1181,
+    "max_raw": 3104,
+    "span": 1923,
+    "wraps": false,
+    "min_deg": -76.1,
+    "max_deg": 92.9,
+    "span_deg": 169.0
+  }
+}

@@ -1,0 +1,22 @@
+{
+ "1": {
+  "move_th": 6,
+  "load_th": 11.0
+ },
+ "2": {
+  "move_th": 10,
+  "load_th": 20
+ },
+ "3": {
+  "move_th": 10,
+  "load_th": 20
+ },
+ "4": {
+  "move_th": 10,
+  "load_th": 15
+ },
+ "5": {
+  "move_th": 7,
+  "load_th": 6.0
+ }
+}
