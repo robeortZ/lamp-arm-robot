@@ -1,0 +1,13 @@
+[Unit]
+Description=Lamp robot WiFi watchdog (auto start provisioning on no internet)
+After=network-online.target wifi-setup.service
+
+[Service]
+Type=simple
+ExecStart=/root/armenv/bin/python /usr/local/sbin/wifi_setup.py watchdog
+Environment=PYTHONUNBUFFERED=1
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

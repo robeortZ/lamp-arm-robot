@@ -127,6 +127,27 @@ sudo /root/armenv/bin/python /usr/local/sbin/arm_savefold.py   # 存收纳位
 浏览器打开 `http://<板子IP>:8090`：每关节「触发灵敏度」（偏离多少 tick 变软）
 和「触发力」（负载多少 % 变软），滑块即时生效，存 `/etc/arm-manual-torque.json`。
 
+### 7. WiFi 配网（换网络时）
+
+**语音**：对台灯说「打开配网模式」（MCP 工具 `device_wifi_setup`）。
+
+**手动**：`sudo systemctl start wifi-setup`。
+
+之后：
+
+1. 板子会开一个**无密码开放热点 `LampBot-Setup`**（期间原 WiFi 断开，SSH 会掉）
+2. 手机连上该热点，打开 **http://192.168.0.1**（多数手机会自动弹出配网页）
+3. 选新 WiFi + 输密码 → 提交 → 板子自动验证联网，成功后热点关闭、恢复正常
+4. 密码错/连不上会自动重开热点让你重试；**15 分钟无操作自动恢复原网络**
+5. 平时由 `wifi-setup-watch.service` 看门狗守护：断网 45s 自动拉起配网门户
+
+自测脚本：`bash scripts/wifi_selftest.sh`（板上跑，写 `/tmp/wifi_selftest.log`）。
+
+⚠️ 安全代价：热点无密码，**同一空间内任何人都可连上改配网**——家用/演示
+场景可接受，公共场合建议临时改回带密码热点（wifi_setup.py 加回 security）。
+依赖：NetworkManager + dnsmasq（`apt install dnsmasq && systemctl disable --now dnsmasq`，
+只装包做 NM 的 shared 模式后端，系统服务保持 disabled）。
+
 ## ⚠️ 关键实验结论：STS3215 EEPROM 参数运行时不生效
 
 行为级实验证实（同行程计时对比）：**Max Torque(reg16)、位置环 PID(reg26-29)

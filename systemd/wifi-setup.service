@@ -1,0 +1,14 @@
+[Unit]
+Description=Lamp robot WiFi provisioning portal (SoftAP + captive portal)
+After=network.target NetworkManager.service
+Wants=NetworkManager.service
+
+[Service]
+Type=simple
+ExecStart=/root/armenv/bin/python /usr/local/sbin/wifi_setup.py portal
+Environment=PYTHONUNBUFFERED=1
+Restart=no
+TimeoutStopSec=10
+
+[Install]
+WantedBy=multi-user.target
