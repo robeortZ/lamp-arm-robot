@@ -389,9 +389,9 @@ def cmd_watchdog(args):
     miss = 0
     while RUNNING:
         time.sleep(args.interval)
-        if sh("systemctl is-active --quiet wifi-setup").returncode == 0:
+        if sh("systemctl is-active --quiet wifi-setup")[0] == 0:
             continue          # 门户已在跑
-        if sh("systemctl is-active --quiet chatbot").returncode != 0:
+        if sh("systemctl is-active --quiet chatbot")[0] != 0:
             continue          # 主程序都没跑，别添乱
         if check_internet(3):
             miss = 0
